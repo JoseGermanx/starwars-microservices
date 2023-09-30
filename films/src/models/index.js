@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { DB_SERVER } = require('../config/env')
 
-const films = axios.get(`${DB_SERVER}:10000/Film`)
+const films = axios.get(`http://database:10000/Film`)
 .then(response => response.data)
 .catch(err => console.log(err))
 

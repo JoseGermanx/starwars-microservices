@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { DB_SERVER } = require('../config/env')
 
-const planets = axios.get(`${DB_SERVER}:10000/Planet`)
+const planets = axios.get(`http://database:10000/Planet`)
 .then(response => response.data)
 .catch(err => console.log(err))
 
