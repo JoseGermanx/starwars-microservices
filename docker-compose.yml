@@ -14,6 +14,8 @@ services:
     build: ./characters
     ports:
       - "8001:8001"
+    depends_on:
+      - database
 
   planets:
     container_name: planets
@@ -21,6 +23,8 @@ services:
     build: ./planets
     ports:
       - "8003:8003"
+    depends_on:
+      - database
 
   films:
     container_name: films
@@ -28,6 +32,8 @@ services:
     build: ./films
     ports:
       - "8002:8002"
+    depends_on:
+      - database
 
   database:
     container_name: database
