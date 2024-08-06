@@ -7,6 +7,15 @@ const server = express();
 
 server.use(morgan('dev'));
 server.use(express.json());
+function verifyGateway(req, res, next) {
+    const originHeader = req.headers['x-gateway-origin'];
+    if (originHeader !== 'gateway') {
+      return res.status(403).send('Access denied');
+    }
+    next();
+  }
+  
+server.use(verifyGateway);
 server.use('/planets',router);
 server.use('*', (req, res) => {
     throw ClientErrors.badRequest('Route not found 404')

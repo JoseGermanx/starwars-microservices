@@ -1,4 +1,4 @@
-const { Character } = require("./src/database");
+const { Character, Film, Planet } = require("./src/database");
 const server = require("./src/server");
 
 server.listen(10000, () => {
@@ -6,3 +6,5 @@ server.listen(10000, () => {
 });
 
 Character();
+Film();
+Planet();
