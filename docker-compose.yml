@@ -1,4 +1,11 @@
 services:
+  database:
+    container_name: database
+    restart: always
+    build: ./database
+    ports:
+      - "10000:10000"
+      
   gateway:
     container_name: gateway
     restart: always
@@ -32,10 +39,3 @@ services:
       - "8002:8002"
     depends_on:
       - database
-
-  database:
-    container_name: database
-    restart: always
-    build: ./database
-    ports:
-      - "10000:10000"
