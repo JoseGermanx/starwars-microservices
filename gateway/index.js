@@ -29,4 +29,10 @@ app.use("/planets", addCustomHeader, createProxyMiddleware({
 })
 );
 
+app.use("/users", createProxyMiddleware({
+	target:"http://users:8004",
+	changeOrigin:true
+})
+);
+
 app.listen(8000)

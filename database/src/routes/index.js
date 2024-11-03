@@ -19,7 +19,7 @@ router.get('/:model/:id', validateModel, async (req, res) => {
 
 router.post('/:model', validateModel, async (req, res) => {
     const { model } = req.params;
-    const response = await store[model].insert(req.body);
+    const response = await store[model].create(req.body);
     res.status(201).send(response);
 }
 )

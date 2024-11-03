@@ -39,3 +39,12 @@ services:
       - "8002:8002"
     depends_on:
       - database
+
+  users:
+    container_name: users
+    restart: always
+    build: ./users
+    ports:
+      - "8004:8004"
+    depends_on:
+      - database
