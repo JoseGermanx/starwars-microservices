@@ -1,6 +1,7 @@
 const express = require("express");
 const {createProxyMiddleware} = require("http-proxy-middleware");
 const morgan = require("morgan");
+const { validateToken } = require("./middlewares");
 
 
 const app = express();
@@ -11,19 +12,19 @@ function addCustomHeader(req, res, next) {
 	next();
   }
 
-app.use("/characters", addCustomHeader, createProxyMiddleware({
+app.use("/characters", validateToken, addCustomHeader, createProxyMiddleware({
 	target:"http://characters:8001",
 	changeOrigin:true
 })
 );
 
-app.use("/films", addCustomHeader, createProxyMiddleware({
+app.use("/films", validateToken, addCustomHeader, createProxyMiddleware({
 	target:"http://films:8002",
 	changeOrigin:true
 })
 );
 
-app.use("/planets", addCustomHeader, createProxyMiddleware({
+app.use("/planets", validateToken, addCustomHeader, createProxyMiddleware({
 	target:"http://planets:8003",
 	changeOrigin:true
 })

@@ -5,7 +5,10 @@ const userSchema = new Schema({
     name: String,
     email: String,
     password: String,
-    role: String,
+    role: {
+        type: String,
+        default: 'user'
+    },
     token: String,
     });
 
@@ -17,8 +20,8 @@ userSchema.statics.get = async function (id) {
     return await this.findById(id)
 }
 
-userSchema.statics.create = async function ({name, email, password, role, token}) {
-    const user = new this({name, email, password, role, token})
+userSchema.statics.create = async function ({name, email, password, token}) {
+    const user = new this({name, email, password, token})
     return await user.save()
 }
 

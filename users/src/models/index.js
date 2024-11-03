@@ -11,13 +11,14 @@ module.exports = {
     return users;
   },
 
-  create: async (name, email, password) => {
+  create: async (name, email, password, token) => {
     // crear un usuario basado en el schema de la base de datos
     try {
       const user = await axios.post(`http://database:10000/User`, {
         name,
         email,
         password,
+        token,
       });
       return user.data;
     } catch (error) {
