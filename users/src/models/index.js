@@ -26,4 +26,18 @@ module.exports = {
       throw error;
     }
   },
+
+  update: async (id, token) => {
+    // actualizar un usuario basado en el schema de la base de datos
+    try {
+      const user = await axios.put(`http://database:10000/User`, {
+        id,
+        token,
+      });
+      return user.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  },
 };

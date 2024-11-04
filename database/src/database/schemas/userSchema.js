@@ -25,8 +25,9 @@ userSchema.statics.create = async function ({name, email, password, token}) {
     return await user.save()
 }
 
-userSchema.statics.update = async function (id, user) {
-    return await this.findByIdAndUpdate(id, user)
+userSchema.statics.update = async function ({id, token}) {
+    const user = new this({token})
+    return await findByIdAndUpdate(id, user, { new: true })
 }
 
 userSchema.statics.delete = async function (id) {
